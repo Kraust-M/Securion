@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Securion{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="mb-4">Welcome to Your Security Dashboard</h1>
+        <p class="lead">
+            Your digital security hub. Monitor your security status and get personalized recommendations.
+        </p>
+    </div>
+</div>
+
+<div class="row mb-5">
+    <div class="col-md-4 mb-4">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h3 class="h4 mb-3">Security Assessment</h3>
+                <p>Evaluate your current security practices and get personalized recommendations.</p>
+                <div class="d-grid">
+                    <a href="{{ url_for('security_assessment') }}" class="btn btn-primary">Take Assessment</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h3 class="h4 mb-3">Security Learning</h3>
+                <p>Access educational resources to improve your security knowledge.</p>
+                <div class="d-grid">
+                    <a href="{{ url_for('learning') }}" class="btn btn-primary">Start Learning</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h3 class="h4 mb-3">Security Tips</h3>
+                <p>Browse our collection of security tips to stay safe online.</p>
+                <div class="d-grid">
+                    <a href="{{ url_for('security_tips') }}" class="btn btn-primary">View Tips</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white">
+                <h3 class="h5 mb-0">Security Tips of the Day</h3>
+            </div>
+            <div class="card-body">
+                {% if tips %}
+                    <div class="row">
+                        {% for tip in tips %}
+                            <div class="col-md-4 mb-3 mb-md-0">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h4 class="h6 card-title">{{ tip.title }}</h4>
+                                        <p class="card-text small">{{ tip.content }}</p>
+                                        <span class="badge bg-primary">{{ tip.category }}</span>
+                                        <span class="badge bg-secondary">{{ tip.difficulty }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p>No security tips available at the moment. Check back later!</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

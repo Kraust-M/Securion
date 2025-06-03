@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Shield background -->
+  <defs>
+    <linearGradient id="shield-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4e73df" />
+      <stop offset="100%" stop-color="#224abe" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Shield shape -->
+  <path d="M200 20
+           C 300 20, 350 50, 350 50
+           C 350 50, 350 150, 350 250
+           C 350 300, 300 350, 200 380
+           C 100 350, 50 300, 50 250
+           C 50 150, 50 50, 50 50
+           C 50 50, 100 20, 200 20 Z"
+        fill="url(#shield-gradient)" 
+        stroke="#224abe" 
+        stroke-width="5" />
+  
+  <!-- Lock icon -->
+  <g transform="translate(125, 120) scale(1.5)">
+    <!-- Lock body -->
+    <rect x="20" y="60" width="60" height="50" rx="5" ry="5" fill="white" />
+    
+    <!-- Lock shackle -->
+    <path d="M30 60 
+             L30 40 
+             C30 25, 70 25, 70 40
+             L70 60" 
+          fill="none" 
+          stroke="white" 
+          stroke-width="10" 
+          stroke-linecap="round" />
+    
+    <!-- Keyhole -->
+    <circle cx="50" cy="80" r="8" fill="#224abe" />
+    <rect x="48" y="80" width="4" height="15" rx="2" ry="2" fill="#224abe" />
+  </g>
+  
+  <!-- Checkmark -->
+  <path d="M150 220 L180 250 L250 170" 
+        fill="none" 
+        stroke="white" 
+        stroke-width="15" 
+        stroke-linecap="round" 
+        stroke-linejoin="round" />
+</svg> 

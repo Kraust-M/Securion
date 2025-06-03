@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Assessment Results - Securion{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-body p-4 text-center">
+                <h1 class="h3 mb-4">Your Security Score</h1>
+                
+                <div class="score-container mb-4">
+                    <div class="position-relative d-inline-block">
+                        <svg width="200" height="200" viewBox="0 0 200 200">
+                            <!-- Background circle -->
+                            <circle cx="100" cy="100" r="80" fill="none" stroke="#e9ecef" stroke-width="20"/>
+                            
+                            <!-- Score circle with stroke-dasharray trick -->
+                            <circle cx="100" cy="100" r="80" fill="none" 
+                                stroke="{% if score >= 80 %}#28a745{% elif score >= 60 %}#ffc107{% elif score >= 40 %}#fd7e14{% else %}#dc3545{% endif %}" 
+                                stroke-width="20"
+                                stroke-dasharray="{{ score * 5.02 }} 502"
+                                stroke-dashoffset="0"
+                                transform="rotate(-90 100 100)"/>
+                        </svg>
+                        <div class="position-absolute top-50 start-50 translate-middle">
+                            <h2 class="display-4 mb-0">{{ score }}</h2>
+                            <p class="mb-0">out of 100</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    {% if score >= 80 %}
+                        <div class="alert alert-success">
+                            <strong>Excellent!</strong> Your security practices are very good.
+                        </div>
+                    {% elif score >= 60 %}
+                        <div class="alert alert-warning">
+                            <strong>Good!</strong> Your security practices are decent, but there's room for improvement.
+                        </div>
+                    {% elif score >= 40 %}
+                        <div class="alert alert-warning">
+                            <strong>Fair.</strong> Your security practices need significant improvement.
+                        </div>
+                    {% else %}
+                        <div class="alert alert-danger">
+                            <strong>Poor.</strong> Your security practices need immediate attention.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white">
+                <h2 class="h5 mb-0">Personalized Recommendations</h2>
+            </div>
+            <div class="card-body p-4">
+                {% if recommendations %}
+                    <div class="list-group">
+                        {% for rec in recommendations %}
+                            <div class="list-group-item list-group-item-action">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">{{ rec.title }}</h5>
+                                </div>
+                                <p class="mb-1">{{ rec.content }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p>No recommendations available. Great job!</p>
+                {% endif %}
+                
+                <div class="mt-4">
+                    <a href="{{ url_for('learning') }}" class="btn btn-primary">Learn More About Security</a>
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary ms-2">Return to Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
